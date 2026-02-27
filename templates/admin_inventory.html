@@ -13,7 +13,15 @@
   </form>
   <h3>Existing items</h3>
   <table>
-    <thead><tr><th>ID</th><th>Name</th><th>Total</th><th>Available</th><th>Actions</th></tr></thead>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Total</th>
+        <th>Available</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
     <tbody>
       {% for it in items %}
         <tr>
@@ -22,7 +30,7 @@
           <td>{{ it.total }}</td>
           <td>{{ it.available }}</td>
           <td>
-            <a href="{{ url_for('edit_item', item_id=it.id) }}">Edit</a> |
+            <a href="{{ url_for('edit_item', item_id=it.id) }}">Edit</a> | 
             <form method="post" action="{{ url_for('delete_item', item_id=it.id) }}" class="inline" style="display:inline;">
               <button type="submit" onclick="return confirm('Delete item?');">Delete</button>
             </form>

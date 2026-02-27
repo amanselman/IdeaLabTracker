@@ -1,0 +1,25 @@
+/* custom overrides for SaaS-style look */
+body {
+    background-color: #f0f2f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.navbar-brand {
+    font-weight: bold;
+}
+.flash {
+    padding: 0.75rem 1rem;
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+}
+.alert-success { background-color: #d1fae5; color: #065f46; }
+.alert-danger { background-color: #fee2e2; color: #7f1d1d; }
+.alert-warning { background-color: #fffbeb; color: #92400e; }
+.card { margin-bottom: 1rem; }
+.table thead th { background-color: #e9ecef; }
+.btn { min-width: 80px; }
+.container { max-width: 960px; }

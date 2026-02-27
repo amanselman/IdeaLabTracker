@@ -6,7 +6,16 @@
     <p>No active loans.</p>
   {% else %}
     <table>
-      <thead><tr><th>ID</th><th>Item</th>{% if g.user.is_admin %}<th>Borrower</th>{% endif %}<th>Qty</th><th>Borrowed</th><th>Action</th></tr></thead>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Item</th>
+          {% if g.user.is_admin %}<th>Borrower</th>{% endif %}
+          <th>Qty</th>
+          <th>Borrowed</th>
+          <th>Action</th>
+        </tr>
+      </thead>
       <tbody>
         {% for l in active %}
           <tr>
@@ -31,7 +40,16 @@
     <p>No returned loans recorded yet.</p>
   {% else %}
     <table>
-      <thead><tr><th>ID</th><th>Item</th>{% if g.user.is_admin %}<th>Borrower</th>{% endif %}<th>Qty</th><th>Borrowed</th><th>Returned</th></tr></thead>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Item</th>
+          {% if g.user.is_admin %}<th>Borrower</th>{% endif %}
+          <th>Qty</th>
+          <th>Borrowed</th>
+          <th>Returned</th>
+        </tr>
+      </thead>
       <tbody>
         {% for l in returned %}
           <tr>
