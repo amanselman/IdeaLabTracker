@@ -27,8 +27,16 @@
         <nav>
           <a href="{{ url_for('index') }}">Home</a>
           <a href="{{ url_for('inventory') }}">Inventory</a>
-          <a href="{{ url_for('borrow') }}">Request Part</a>
-          <a href="{{ url_for('loans') }}">Loans</a>
+          {% if g.user %}
+            <a href="{{ url_for('borrow') }}">Request Part</a>
+            <a href="{{ url_for('loans') }}">Loans</a>
+            {% if g.user.is_admin %}
+              <a href="{{ url_for('admin_inventory') }}">Admin</a>
+            {% endif %}
+            <a href="{{ url_for('logout') }}" style="float:right;">Logout ({{ g.user.username }})</a>
+          {% else %}
+            <a href="{{ url_for('login') }}" style="float:right;">Login</a>
+          {% endif %}
         </nav>
       </div>
     </header>

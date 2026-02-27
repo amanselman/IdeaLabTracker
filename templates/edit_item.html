@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Edit Item</h2>
+  <form method="post">
+    <label for="name">Name</label>
+    <input name="name" id="name" value="{{ item.name }}" required/>
+    <label for="total">Total quantity</label>
+    <input type="number" name="total" id="total" min="0" value="{{ item.total }}" required />
+    <label for="available">Available</label>
+    <input type="number" name="available" id="available" min="0" value="{{ item.available }}" required />
+    <button type="submit">Save</button>
+  </form>
+{% endblock %}

@@ -23,15 +23,30 @@ pip install -r requirements.txt
 python init_db.py
 ```
 
+This creates two demo user accounts:
+
+- **student1** / **student** (borrower)
+- **admin** / **admin** (admin with inventory rights)
+
+4. Run the app:
+
 4. Run the app:
 
 ```bash
 python app.py
 ```
 
-Open http://127.0.0.1:5000 in your browser.
+Open http://127.0.0.1:5000 in your browser. Log in using one of the demo credentials; the "Admin" link will appear for the admin user.
 
 Notes and next steps:
 - This is intentionally minimal: it uses SQLite and a small HTML UI.
 - To make this production-ready: add authentication, input validation, better CSS, and persistent migrations.
 - You can extend the DB to include student IDs and export logs.
+
+Running the automated tests:
+
+```bash
+python -m pytest -q
+```
+
+The suite logs in as both a student and admin, exercises borrowing/returning, and verifies the admin inventory actions.

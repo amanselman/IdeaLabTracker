@@ -2,12 +2,18 @@
 
 {% block content %}
   <h2>Welcome</h2>
-  <p>This is a small demo to request and track borrowing of parts in IDEALab.
-  Use the links above to view inventory, request parts, and manage loans.</p>
+  {% if g.user %}
+    <p>Hello, {{ g.user.username }}! Use the links above to manage your loans.</p>
+  {% else %}
+    <p>This is a small demo to request and track borrowing of parts in IDEALab.
+    Please <a href="{{ url_for('login') }}">log in</a> to continue.</p>
+  {% endif %}
   <h3>Quick actions</h3>
   <ul>
     <li><a href="{{ url_for('inventory') }}">See inventory</a></li>
-    <li><a href="{{ url_for('borrow') }}">Request a part</a></li>
-    <li><a href="{{ url_for('loans') }}">View active loans / record returns</a></li>
+    {% if g.user %}
+      <li><a href="{{ url_for('borrow') }}">Request a part</a></li>
+      <li><a href="{{ url_for('loans') }}">View active loans / record returns</a></li>
+    {% endif %}
   </ul>
 {% endblock %}

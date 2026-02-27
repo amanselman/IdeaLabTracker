@@ -6,13 +6,13 @@
     <p>No active loans.</p>
   {% else %}
     <table>
-      <thead><tr><th>ID</th><th>Item</th><th>Borrower</th><th>Qty</th><th>Borrowed</th><th>Action</th></tr></thead>
+      <thead><tr><th>ID</th><th>Item</th>{% if g.user.is_admin %}<th>Borrower</th>{% endif %}<th>Qty</th><th>Borrowed</th><th>Action</th></tr></thead>
       <tbody>
         {% for l in active %}
           <tr>
             <td>{{ l.id }}</td>
             <td>{{ l.name }}</td>
-            <td>{{ l.borrower }}</td>
+            {% if g.user.is_admin %}<td>{{ l.borrower }}</td>{% endif %}
             <td>{{ l.qty }}</td>
             <td>{{ l.borrow_date }}</td>
             <td>
@@ -31,13 +31,13 @@
     <p>No returned loans recorded yet.</p>
   {% else %}
     <table>
-      <thead><tr><th>ID</th><th>Item</th><th>Borrower</th><th>Qty</th><th>Borrowed</th><th>Returned</th></tr></thead>
+      <thead><tr><th>ID</th><th>Item</th>{% if g.user.is_admin %}<th>Borrower</th>{% endif %}<th>Qty</th><th>Borrowed</th><th>Returned</th></tr></thead>
       <tbody>
         {% for l in returned %}
           <tr>
             <td>{{ l.id }}</td>
             <td>{{ l.name }}</td>
-            <td>{{ l.borrower }}</td>
+            {% if g.user.is_admin %}<td>{{ l.borrower }}</td>{% endif %}
             <td>{{ l.qty }}</td>
             <td>{{ l.borrow_date }}</td>
             <td>{{ l.return_date }}</td>

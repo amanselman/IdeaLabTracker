@@ -26,6 +26,13 @@ CREATE TABLE IF NOT EXISTS loans (
     return_date TEXT,
     FOREIGN KEY(item_id) REFERENCES items(id)
 );
+
+CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT NOT NULL UNIQUE,
+    password_hash TEXT NOT NULL,
+    is_admin INTEGER NOT NULL DEFAULT 0
+);
 '''
 
 sample_items = [
@@ -34,6 +41,12 @@ sample_items = [
     ('Breadboard', 20),
     ('Stepper Motor', 6),
     ('Servo Motor', 12),
+]
+
+# demo accounts (passwords = 'student' and 'admin')
+sample_users = [
+    ('student1', 'student', 0),
+    ('admin', 'admin', 1),
 ]
 
 
@@ -46,6 +59,11 @@ def create_db():
     cur.executescript(schema)
     for name, total in sample_items:
         cur.execute('INSERT INTO items (name, total, available) VALUES (?, ?, ?)', (name, total, total))
+    # add users with hashed passwords
+    from werkzeug.security import generate_password_hash
+    for username, pwd, admin_flag in sample_users:
+        cur.execute('INSERT INTO users (username, password_hash, is_admin) VALUES (?, ?, ?)',
+                    (username, generate_password_hash(pwd), admin_flag))
     conn.commit()
     conn.close()
     print('Database created and seeded at', DB_PATH)
