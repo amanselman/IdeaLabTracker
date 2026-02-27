@@ -1,6 +1,6 @@
-# IDEALab Borrowing Demo
+# IDEALab Borrowing Demo v0.5
 
-This is a small demo web app to request and track borrowing of components in IDEALab.
+This is a small unpolished demo web app to request and track borrowing of components in IDEALab.
 
 Quick steps to run locally (Windows / Bash):
 
