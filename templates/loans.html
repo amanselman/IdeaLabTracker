@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Active Loans</h2>
+  {% if active|length == 0 %}
+    <p>No active loans.</p>
+  {% else %}
+    <table>
+      <thead><tr><th>ID</th><th>Item</th><th>Borrower</th><th>Qty</th><th>Borrowed</th><th>Action</th></tr></thead>
+      <tbody>
+        {% for l in active %}
+          <tr>
+            <td>{{ l.id }}</td>
+            <td>{{ l.name }}</td>
+            <td>{{ l.borrower }}</td>
+            <td>{{ l.qty }}</td>
+            <td>{{ l.borrow_date }}</td>
+            <td>
+              <form method="post" action="{{ url_for('return_loan', loan_id=l.id) }}" class="inline">
+                <button type="submit">Record return</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+
+  <h2 style="margin-top:1.5rem">Returned</h2>
+  {% if returned|length == 0 %}
+    <p>No returned loans recorded yet.</p>
+  {% else %}
+    <table>
+      <thead><tr><th>ID</th><th>Item</th><th>Borrower</th><th>Qty</th><th>Borrowed</th><th>Returned</th></tr></thead>
+      <tbody>
+        {% for l in returned %}
+          <tr>
+            <td>{{ l.id }}</td>
+            <td>{{ l.name }}</td>
+            <td>{{ l.borrower }}</td>
+            <td>{{ l.qty }}</td>
+            <td>{{ l.borrow_date }}</td>
+            <td>{{ l.return_date }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+{% endblock %}

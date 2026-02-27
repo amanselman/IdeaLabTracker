@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Welcome</h2>
+  <p>This is a small demo to request and track borrowing of parts in IDEALab.
+  Use the links above to view inventory, request parts, and manage loans.</p>
+  <h3>Quick actions</h3>
+  <ul>
+    <li><a href="{{ url_for('inventory') }}">See inventory</a></li>
+    <li><a href="{{ url_for('borrow') }}">Request a part</a></li>
+    <li><a href="{{ url_for('loans') }}">View active loans / record returns</a></li>
+  </ul>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Request a Part</h2>
+  {% if items|length == 0 %}
+    <p>No available items to borrow right now.</p>
+  {% else %}
+    <form method="post">
+      <label for="item_id">Item</label>
+      <select name="item_id" id="item_id">
+        {% for it in items %}
+          <option value="{{ it.id }}">{{ it.name }} ({{ it.available }} available)</option>
+        {% endfor %}
+      </select>
+
+      <label for="borrower">Your name / student id</label>
+      <input type="text" id="borrower" name="borrower" required />
+
+      <label for="qty">Quantity</label>
+      <input type="number" id="qty" name="qty" min="1" value="1" required />
+
+      <button type="submit">Request</button>
+    </form>
+  {% endif %}
+{% endblock %}

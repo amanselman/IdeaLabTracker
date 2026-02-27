@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Inventory</h2>
+  <table>
+    <thead>
+      <tr><th>ID</th><th>Name</th><th>Total</th><th>Available</th><th>Action</th></tr>
+    </thead>
+    <tbody>
+      {% for it in items %}
+        <tr>
+          <td>{{ it.id }}</td>
+          <td>{{ it.name }}</td>
+          <td>{{ it.total }}</td>
+          <td>{{ it.available }}</td>
+          <td>
+            {% if it.available > 0 %}
+              <a href="{{ url_for('borrow') }}">Borrow</a>
+            {% else %}
+              <small>Out</small>
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
